@@ -32,8 +32,7 @@ Avant d’utiliser **Arch's Auto Clipping**, installez le navigateur et l’exte
 
 ### 2. Installer l’extension YouTube Clip Saver
 
-1. Ouvrez le Chrome Web Store :  
-   [YouTube Clip Saver](https://chromewebstore.google.com/detail/youtube-clip-saver/ppmgcfhfmkbkfjhjdgdnigfcamapdifp).
+1. Ouvrez le Chrome Web Store : [YouTube Clip Saver](https://chromewebstore.google.com/detail/youtube-clip-saver/ppmgcfhfmkbkfjhjdgdnigfcamapdifp).
 2. Cliquez sur **Ajouter à Chrome** (ou l’équivalent proposé par Brave).
 3. Confirmez l’installation de l’extension.
 4. Utilisez l’extension sur YouTube pour enregistrer des clips ; les exports CSV produits serviront d’entrée pour **Arch's Auto Clipping** (dossier `files/`).
