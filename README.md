@@ -8,14 +8,35 @@ Les binaires volumineux (`ffmpeg`, gestionnaire Python, etc.) ne sont **pas** in
 
 ## Table des matières
 
-1. [Fonctionnement](#fonctionnement)
-2. [Installation sous Windows](#installation-sous-windows)
-3. [Installation sous Linux](#installation-sous-linux)
-4. [Utilisation](#utilisation)
-5. [Format des fichiers CSV](#format-des-fichiers-csv)
-6. [Structure du projet](#structure-du-projet)
-7. [Outils téléchargés dans tools/](#outils-téléchargés-dans-tools)
-8. [Dépannage](#dépannage)
+1. [Prérequis : navigateur et extension](#prérequis--navigateur-et-extension)
+2. [Fonctionnement](#fonctionnement)
+3. [Installation sous Windows](#installation-sous-windows)
+4. [Installation sous Linux](#installation-sous-linux)
+5. [Utilisation](#utilisation)
+6. [Format des fichiers CSV](#format-des-fichiers-csv)
+7. [Structure du projet](#structure-du-projet)
+8. [Outils téléchargés dans tools/](#outils-téléchargés-dans-tools)
+9. [Dépannage](#dépannage)
+
+---
+
+## Prérequis : navigateur et extension
+
+Avant d’utiliser **Arch's Auto Clipping**, installez le navigateur et l’extension qui génèrent les fichiers CSV.
+
+### 1. Installer le navigateur Brave
+
+1. Ouvrez le site officiel : [https://brave.com/](https://brave.com/).
+2. Téléchargez la version adaptée à votre système (Windows ou Linux).
+3. Installez Brave et lancez-le.
+
+### 2. Installer l’extension YouTube Clip Saver
+
+1. Ouvrez le Chrome Web Store :  
+   [YouTube Clip Saver](https://chromewebstore.google.com/detail/youtube-clip-saver/ppmgcfhfmkbkfjhjdgdnigfcamapdifp).
+2. Cliquez sur **Ajouter à Chrome** (ou l’équivalent proposé par Brave).
+3. Confirmez l’installation de l’extension.
+4. Utilisez l’extension sur YouTube pour enregistrer des clips ; les exports CSV produits serviront d’entrée pour **Arch's Auto Clipping** (dossier `files/`).
 
 ---
 
