@@ -29,15 +29,3 @@ chmod +x install.sh run.sh
 ./install.sh    # venv + deps + ffmpeg dans tools/
 ./run.sh
 ```
-
-## Structure
-
-```
-├── install.bat / run.bat     # Windows
-├── install.sh / run.sh       # Linux
-├── DOCUMENTATION.md
-├── scripts/                  # code
-├── files/                    # CSV d'entrée
-├── download/ · clips/ · processeds/
-└── tools/                    # binaires téléchargés localement (gitignore)
-```
