@@ -1,0 +1,33 @@
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+
+download/
+clips/
+processeds/
+*.part
+*.ytdl
+*.tmp
+
+# Binaires ffmpeg (téléchargés par install)
+tools/ffmpeg
+tools/ffmpeg.exe
+tools/ffprobe
+tools/ffprobe.exe
+tools/*.zip
+tools/*.tar.xz
+
+# Cookies YouTube (ne jamais committer)
+cookies.txt
+youtube_cookies.txt
+
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
