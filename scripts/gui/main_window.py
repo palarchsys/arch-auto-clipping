@@ -20,6 +20,7 @@ from scripts.core.pipeline import Pipeline, PipelineResult
 from scripts.gui.styles import APP_STYLESHEET
 from scripts.utils.control import ControlFlags, LogLevel, PipelineState
 from scripts.utils.paths import ProjectPaths, get_project_paths
+from scripts.utils.updates import PackageStatus, format_report_lines
 
 
 class PipelineWorker(QThread):
@@ -43,7 +44,11 @@ class PipelineWorker(QThread):
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, paths: ProjectPaths | None = None) -> None:
+    def __init__(
+        self,
+        paths: ProjectPaths | None = None,
+        startup_report: list[PackageStatus] | None = None,
+    ) -> None:
         super().__init__()
         self.paths = paths or get_project_paths()
         self.control = ControlFlags()
@@ -69,6 +74,19 @@ class MainWindow(QMainWindow):
             LogLevel.INFO,
             f"Placez vos CSV dans: {self.paths.files}",
         )
+        self._log_startup_report(startup_report)
+
+    def _log_startup_report(self, report: list[PackageStatus] | None) -> None:
+        if not report:
+            return
+        level_map = {
+            "info": LogLevel.INFO,
+            "success": LogLevel.SUCCESS,
+            "warning": LogLevel.WARNING,
+            "error": LogLevel.ERROR,
+        }
+        for kind, text in format_report_lines(report):
+            self._append_log(level_map.get(kind, LogLevel.INFO), text)
 
     def _build_ui(self) -> None:
         central = QWidget()
@@ -241,9 +259,9 @@ class MainWindow(QMainWindow):
             LogLevel.SUCCESS: "#a6e3a1",
         }.get(level, "#cdd6f4")
         safe = (
-            text.replace("&", "&amp;")
-            .replace("<", "&lt;")
-            .replace(">", "&gt;")
+            text.replace("&", "&")
+            .replace("<", "<")
+            .replace(">", ">")
         )
         html = (
             f'<span style="color:{color}">'

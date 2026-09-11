@@ -91,10 +91,10 @@ fi
 
 echo
 echo "[..] Installation des dépendances (requirements.txt) ..."
-if ! "$VENV_PY" -m pip install -r "$(pwd)/requirements.txt" 2>/dev/null; then
+if ! "$VENV_PY" -m pip install --upgrade -r "$(pwd)/requirements.txt" 2>/dev/null; then
   if command -v uv >/dev/null 2>&1; then
     echo "[INFO] installation via uv pip ..."
-    uv pip install --python "$VENV_PY" -r "$(pwd)/requirements.txt"
+    uv pip install --python "$VENV_PY" --upgrade -r "$(pwd)/requirements.txt"
   else
     echo "[ERREUR] Échec installation des dépendances."
     exit 1

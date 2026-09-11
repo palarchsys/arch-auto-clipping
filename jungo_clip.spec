@@ -7,9 +7,12 @@ datas = []
 binaries = []
 hiddenimports = [
     "yt_dlp",
+    "yt_dlp_ejs",
     "PySide6.QtCore",
     "PySide6.QtGui",
     "PySide6.QtWidgets",
+    "scripts.utils.updates",
+    "scripts.core.downloader",
 ]
 
 tmp_ret = collect_all("yt_dlp")

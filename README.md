@@ -45,7 +45,8 @@ Avant d’utiliser **Arch's Auto Clipping**, installez le navigateur et l’exte
 2. Lit chaque ligne pour identifier les clips à produire.
 3. Télécharge les vidéos YouTube (meilleure qualité possible) dans `download/` :
    - Si la vidéo est déjà présente, le téléchargement est ignoré.
-   - En cas d’erreur **401**, **403** ou réseau temporaire, nouvel essai après **3 secondes** (maximum **10** essais).
+   - En cas d’erreur **401**, **403**, SABR, réseau temporaire, nouvel essai après **3 secondes** (maximum **10** essais), en changeant de client YouTube (tv, android, web_embedded…).
+   - Au lancement, **yt-dlp** est vérifié sur PyPI et mis à jour automatiquement s’il est trop ancien (cause n°1 des échecs YouTube).
    - Aucun clip n’est créé à partir d’un fichier incomplet (par exemple `.part`).
 4. Crée un dossier par `videoTitle` dans `clips/` (sans doublon).
 5. Découpe les clips sous la forme :  
@@ -97,7 +98,7 @@ Ensuite :
 
 1. Double-cliquez sur **`run.bat`**  
    (ne pas utiliser `run.sh`, réservé à Linux).
-2. La fenêtre **Arch's Auto Clipping** s’affiche.
+2. La fenêtre **Arch's Auto Clipping** s’affiche. Les logs indiquent si les librairies sont à jour (`yt-dlp`, `PySide6`).
 3. Cliquez sur **Start** pour démarrer le traitement.
 
 ---
@@ -150,6 +151,8 @@ Le script :
 ```
 
 Puis cliquez sur **Start** dans la fenêtre **Arch's Auto Clipping**.
+
+Au lancement, l’application interroge PyPI : `yt-dlp` est mis à jour tout seul si une version plus récente existe. `PySide6` est seulement signalé (relancez `./install.sh` pour l’appliquer).
 
 ---
 
@@ -256,6 +259,25 @@ python3 scripts/fetch_tools.py
 
 ## Dépannage
 
+### Le téléchargement YouTube échoue (403, SABR, « sign in »)
+
+YouTube change souvent ses protections. L’application :
+
+1. Met **yt-dlp** à jour au lancement.
+2. Retente jusqu’à 10 fois en changeant de client (tv, android, web_embedded…).
+3. Peut lire un fichier **`cookies.txt`** (format Netscape) placé à la racine du projet.
+
+Pour exporter les cookies depuis Brave :
+
+1. Installez une extension du type **Get cookies.txt LOCALLY**.
+2. Ouvrez YouTube dans Brave, exportez `cookies.txt`.
+3. Copiez le fichier à la racine du projet (à côté de `main.py`).
+4. Relancez l’application puis **Start**.
+
+Ne commitez jamais `cookies.txt` (il contient votre session).
+
+Pour la meilleure qualité (1080p+), installez **Node.js** (LTS) ou **Deno** : yt-dlp s’en sert pour résoudre les défis JavaScript de YouTube. Sans ça, l’application se rabat sur le client Android (souvent 360p, mais ça télécharge).
+
 ### Windows
 
 | Problème | Solution |
@@ -263,6 +285,7 @@ python3 scripts/fetch_tools.py
 | Python introuvable | Installer le [Python Install Manager](https://www.python.org/ftp/python/pymanager/python-manager-26.3.msix), puis rouvrir le terminal |
 | `tools\ffmpeg.exe` absent | Relancer `install.bat` ou exécuter `scripts\fetch_tools.py` |
 | Erreur au lancement de `run.bat` | Vérifier que `install.bat` a bien terminé (présence de `.venv`) |
+| Téléchargement YouTube en échec | Laisser l’app mettre à jour yt-dlp au lancement, ou placer un `cookies.txt` à la racine |
 
 ### Linux
 
@@ -272,6 +295,7 @@ python3 scripts/fetch_tools.py
 | Module `venv` manquant | `sudo apt install python3-venv` |
 | `ffmpeg` introuvable | Relancer `./install.sh` ou `python3 scripts/fetch_tools.py` |
 | Permission denied | `chmod +x install.sh run.sh tools/ffmpeg tools/ffprobe` |
+| Téléchargement YouTube en échec | Même procédure que Windows (`cookies.txt` + mise à jour yt-dlp) |
 
 ---
 

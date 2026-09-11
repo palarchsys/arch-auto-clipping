@@ -80,7 +80,7 @@ if errorlevel 1 (
 
 echo.
 echo [..] Installation des dependances (requirements.txt) ...
-"%VENV_PY%" -m pip install -r "%CD%\requirements.txt"
+"%VENV_PY%" -m pip install --upgrade -r "%CD%\requirements.txt"
 if errorlevel 1 (
   echo [ERREUR] Echec installation des dependances.
   pause
